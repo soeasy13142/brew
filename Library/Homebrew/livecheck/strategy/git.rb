@@ -189,13 +189,12 @@ module Homebrew
         # @return [Hash]
         sig {
           params(
-            url:     String,
-            regex:   T.nilable(Regexp),
-            _unused: T.untyped,
-            block:   T.nilable(Proc),
+            url:   String,
+            regex: T.nilable(Regexp),
+            block: T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: nil, **_unused, &block)
+        def self.find_versions(url:, regex: nil, &block)
           match_data = { matches: {}, regex:, url: }
 
           tags_data = tag_info(url, regex)

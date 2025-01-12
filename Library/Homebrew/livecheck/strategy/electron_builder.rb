@@ -40,11 +40,10 @@ module Homebrew
             url:              String,
             regex:            T.nilable(Regexp),
             provided_content: T.nilable(String),
-            unused:           T.untyped,
             block:            T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: nil, provided_content: nil, **unused, &block)
+        def self.find_versions(url:, regex: nil, provided_content: nil, &block)
           if regex.present? && block.blank?
             raise ArgumentError,
                   "#{Utils.demodulize(T.must(name))} only supports a regex when using a `strategy` block"
@@ -54,7 +53,6 @@ module Homebrew
             url:,
             regex:,
             provided_content:,
-            **unused,
             &block || proc { |yaml| yaml["version"] }
           )
         end

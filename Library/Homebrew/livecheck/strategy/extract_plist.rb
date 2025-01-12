@@ -82,14 +82,13 @@ module Homebrew
         # @return [Hash]
         sig {
           params(
-            cask:    Cask::Cask,
-            url:     T.nilable(String),
-            regex:   T.nilable(Regexp),
-            _unused: T.untyped,
-            block:   T.nilable(Proc),
+            cask:  Cask::Cask,
+            url:   T.nilable(String),
+            regex: T.nilable(Regexp),
+            block: T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(cask:, url: nil, regex: nil, **_unused, &block)
+        def self.find_versions(cask:, url: nil, regex: nil, &block)
           if regex.present? && block.blank?
             raise ArgumentError,
                   "#{Utils.demodulize(T.must(name))} only supports a regex when using a `strategy` block"

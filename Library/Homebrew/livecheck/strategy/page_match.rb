@@ -85,11 +85,10 @@ module Homebrew
             regex:            T.nilable(Regexp),
             provided_content: T.nilable(String),
             homebrew_curl:    T::Boolean,
-            _unused:          T.untyped,
             block:            T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: nil, provided_content: nil, homebrew_curl: false, **_unused, &block)
+        def self.find_versions(url:, regex: nil, provided_content: nil, homebrew_curl: false, &block)
           if regex.blank? && block.blank?
             raise ArgumentError, "#{Utils.demodulize(T.must(name))} requires a regex or `strategy` block"
           end

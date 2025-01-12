@@ -85,11 +85,10 @@ module Homebrew
             url:              String,
             regex:            T.nilable(Regexp),
             provided_content: T.nilable(String),
-            unused:           T.untyped,
             block:            T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: nil, provided_content: nil, **unused, &block)
+        def self.find_versions(url:, regex: nil, provided_content: nil, &block)
           match_data = { matches: {}, regex:, url: }
 
           generated = generate_input_values(url)
@@ -99,7 +98,6 @@ module Homebrew
             url:              generated[:url],
             regex:,
             provided_content:,
-            **unused,
             &block || DEFAULT_BLOCK
           )
         end

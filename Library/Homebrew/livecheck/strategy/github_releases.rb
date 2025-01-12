@@ -127,13 +127,12 @@ module Homebrew
         # @return [Hash]
         sig {
           params(
-            url:     String,
-            regex:   Regexp,
-            _unused: T.untyped,
-            block:   T.nilable(Proc),
+            url:   String,
+            regex: Regexp,
+            block: T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: DEFAULT_REGEX, **_unused, &block)
+        def self.find_versions(url:, regex: DEFAULT_REGEX, &block)
           match_data = { matches: {}, regex:, url: }
 
           generated = generate_input_values(url)

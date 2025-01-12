@@ -74,11 +74,10 @@ module Homebrew
             url:           String,
             regex:         T.nilable(Regexp),
             homebrew_curl: T::Boolean,
-            _unused:       T.untyped,
             block:         T.nilable(Proc),
           ).returns(T::Hash[Symbol, T.untyped])
         }
-        def self.find_versions(url:, regex: nil, homebrew_curl: false, **_unused, &block)
+        def self.find_versions(url:, regex: nil, homebrew_curl: false, &block)
           match_data = { matches: {}, regex:, url: }
 
           headers = Strategy.page_headers(url, homebrew_curl:)
