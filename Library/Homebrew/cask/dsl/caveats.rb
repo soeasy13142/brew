@@ -32,9 +32,7 @@ module Cask
       private_class_method :caveat
 
       sig { returns(T::Boolean) }
-      def discontinued?
-        @discontinued == true
-      end
+      def discontinued? = @discontinued
 
       sig { returns(String) }
       def to_s

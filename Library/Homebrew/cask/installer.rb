@@ -40,69 +40,43 @@ module Cask
     end
 
     sig { returns(T::Boolean) }
-    def adopt?
-      @adopt == true
-    end
+    def adopt? = @adopt
 
     sig { returns(T::Boolean) }
-    def binaries?
-      @binaries == true
-    end
+    def binaries? = @binaries
 
     sig { returns(T::Boolean) }
-    def force?
-      @force == true
-    end
+    def force? = @force
 
     sig { returns(T::Boolean) }
-    def installed_as_dependency?
-      @installed_as_dependency == true
-    end
+    def installed_as_dependency? = @installed_as_dependency
 
     sig { returns(T::Boolean) }
-    def installed_on_request?
-      @installed_on_request == true
-    end
+    def installed_on_request? = @installed_on_request
 
     sig { returns(T::Boolean) }
-    def quarantine?
-      @quarantine == true
-    end
+    def quarantine? = @quarantine
 
     sig { returns(T::Boolean) }
-    def quiet?
-      @quiet == true
-    end
+    def quiet? = @quiet
 
     sig { returns(T::Boolean) }
-    def reinstall?
-      @reinstall == true
-    end
+    def reinstall? = @reinstall
 
     sig { returns(T::Boolean) }
-    def require_sha?
-      @require_sha == true
-    end
+    def require_sha? = @require_sha
 
     sig { returns(T::Boolean) }
-    def skip_cask_deps?
-      @skip_cask_deps == true
-    end
+    def skip_cask_deps? = @skip_cask_deps
 
     sig { returns(T::Boolean) }
-    def upgrade?
-      @upgrade == true
-    end
+    def upgrade? = @upgrade
 
     sig { returns(T::Boolean) }
-    def verbose?
-      @verbose == true
-    end
+    def verbose? = @verbose
 
     sig { returns(T::Boolean) }
-    def zap?
-      @zap == true
-    end
+    def zap? = @zap
 
     def self.caveats(cask)
       odebug "Printing caveats"

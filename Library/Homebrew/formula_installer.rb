@@ -142,84 +142,52 @@ class FormulaInstaller
   end
 
   sig { returns(T::Boolean) }
-  def debug?
-    @debug == true
-  end
+  def debug? = @debug
 
   sig { returns(T::Boolean) }
-  def debug_symbols?
-    @debug_symbols == true
-  end
+  def debug_symbols? = @debug_symbols
 
   sig { returns(T::Boolean) }
-  def force?
-    @force == true
-  end
+  def force? = @force
 
   sig { returns(T::Boolean) }
-  def force_bottle?
-    @force_bottle == true
-  end
+  def force_bottle? = @force_bottle
 
   sig { returns(T::Boolean) }
-  def git?
-    @git == true
-  end
+  def git? = @git
 
   sig { returns(T::Boolean) }
-  def ignore_deps?
-    @ignore_deps == true
-  end
+  def ignore_deps? = @ignore_deps
 
   sig { returns(T::Boolean) }
-  def installed_as_dependency?
-    @installed_as_dependency == true
-  end
+  def installed_as_dependency? = @installed_as_dependency
 
   sig { returns(T::Boolean) }
-  def installed_on_request?
-    @installed_on_request == true
-  end
+  def installed_on_request? = @installed_on_request
 
   sig { returns(T::Boolean) }
-  def interactive?
-    @interactive == true
-  end
+  def interactive? = @interactive
 
   sig { returns(T::Boolean) }
-  def keep_tmp?
-    @keep_tmp == true
-  end
+  def keep_tmp? = @keep_tmp
 
   sig { returns(T::Boolean) }
-  def only_deps?
-    @only_deps == true
-  end
+  def only_deps? = @only_deps
 
   sig { returns(T::Boolean) }
-  def overwrite?
-    @overwrite == true
-  end
+  def overwrite? = @overwrite
 
   sig { returns(T::Boolean) }
-  def quiet?
-    @quiet == true
-  end
+  def quiet? = @quiet
 
   sig { returns(T::Boolean) }
-  def show_header?
-    @show_header == true
-  end
+  def show_header? = @show_header
 
   sig { returns(T::Boolean) }
-  def show_summary_heading?
-    @show_summary_heading == true
-  end
+  def show_summary_heading? = @show_summary_heading
 
   sig { returns(T::Boolean) }
-  def verbose?
-    @verbose == true
-  end
+  def verbose? = @verbose
 
   sig { returns(T::Set[Formula]) }
   def self.attempted

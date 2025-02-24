@@ -75,9 +75,7 @@ module Debrew
     attr_reader :debugged_exceptions
 
     sig { returns(T::Boolean) }
-    def active?
-      @active == true
-    end
+    def active? = @active
   end
 
   def self.debrew

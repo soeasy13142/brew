@@ -153,24 +153,16 @@ class SystemCommand
   attr_reader :executable, :args, :input, :chdir, :env
 
   sig { returns(T::Boolean) }
-  def must_succeed?
-    @must_succeed == true
-  end
+  def must_succeed? = @must_succeed
 
   sig { returns(T::Boolean) }
-  def reset_uid?
-    @reset_uid == true
-  end
+  def reset_uid? = @reset_uid
 
   sig { returns(T::Boolean) }
-  def sudo?
-    @sudo == true
-  end
+  def sudo? = @sudo
 
   sig { returns(T::Boolean) }
-  def sudo_as_root?
-    @sudo_as_root == true
-  end
+  def sudo_as_root? = @sudo_as_root
 
   sig { returns(T::Boolean) }
   def debug?

@@ -52,29 +52,19 @@ module Cask
     end
 
     sig { returns(T::Boolean) }
-    def new_cask?
-      @new_cask == true
-    end
+    def new_cask? = !!@new_cask
 
     sig { returns(T::Boolean) }
-    def online?
-      @online == true
-    end
+    def online? = !!@online
 
     sig { returns(T::Boolean) }
-    def signing?
-      @signing == true
-    end
+    def signing? = !!@signing
 
     sig { returns(T::Boolean) }
-    def strict?
-      @strict == true
-    end
+    def strict? = !!@strict
 
     sig { returns(T::Boolean) }
-    def token_conflicts?
-      @token_conflicts == true
-    end
+    def token_conflicts? = !!@token_conflicts
 
     def run!
       only_audits = @only

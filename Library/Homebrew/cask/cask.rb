@@ -89,9 +89,7 @@ module Cask
     end
 
     sig { returns(T::Boolean) }
-    def loaded_from_api?
-      @loaded_from_api == true
-    end
+    def loaded_from_api? = @loaded_from_api
 
     # An old name for the cask.
     sig { returns(T::Array[String]) }

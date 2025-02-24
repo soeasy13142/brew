@@ -224,19 +224,13 @@ module Homebrew
     end
 
     sig { returns(T::Boolean) }
-    def dry_run?
-      @dry_run == true
-    end
+    def dry_run? = @dry_run
 
     sig { returns(T::Boolean) }
-    def prune?
-      @prune == true
-    end
+    def prune? = @prune
 
     sig { returns(T::Boolean) }
-    def scrub?
-      @scrub == true
-    end
+    def scrub? = @scrub
 
     def self.install_formula_clean!(formula, dry_run: false)
       return if Homebrew::EnvConfig.no_install_cleanup?

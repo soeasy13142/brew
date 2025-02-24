@@ -3352,16 +3352,12 @@ class Formula
 
     # Whether this formula was loaded using the formulae.brew.sh API
     sig { returns(T::Boolean) }
-    def loaded_from_api?
-      @loaded_from_api == true
-    end
+    def loaded_from_api? = !!@loaded_from_api
 
     # Whether this formula contains OS/arch-specific blocks
     # (e.g. `on_macos`, `on_arm`, `on_monterey :or_older`, `on_system :linux, macos: :big_sur_or_newer`).
     sig { returns(T::Boolean) }
-    def on_system_blocks_exist?
-      @on_system_blocks_exist == true
-    end
+    def on_system_blocks_exist? = !!@on_system_blocks_exist
 
     # The reason for why this software is not linked (by default) to {::HOMEBREW_PREFIX}.
     attr_reader :keg_only_reason

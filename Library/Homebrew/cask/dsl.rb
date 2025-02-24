@@ -115,29 +115,19 @@ module Cask
     end
 
     sig { returns(T::Boolean) }
-    def depends_on_set_in_block?
-      @depends_on_set_in_block == true
-    end
+    def depends_on_set_in_block? = !!@depends_on_set_in_block
 
     sig { returns(T::Boolean) }
-    def deprecated?
-      @deprecated == true
-    end
+    def deprecated? = !!@deprecated
 
     sig { returns(T::Boolean) }
-    def disabled?
-      @disabled == true
-    end
+    def disabled? = !!@disabled
 
     sig { returns(T::Boolean) }
-    def livecheck_defined?
-      @livecheck_defined == true
-    end
+    def livecheck_defined? = !!@livecheck_defined
 
     sig { returns(T::Boolean) }
-    def on_system_blocks_exist?
-      @on_system_blocks_exist == true
-    end
+    def on_system_blocks_exist? = !!@on_system_blocks_exist
 
     # Specifies the cask's name.
     #
