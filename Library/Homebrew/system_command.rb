@@ -1,7 +1,6 @@
 # typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
-require "attrable"
 require "plist"
 require "shellwords"
 require "uri"
@@ -34,7 +33,6 @@ class SystemCommand
   end
 
   include Context
-  extend Attrable
 
   def self.run(executable, **options)
     new(executable, **options).run!
@@ -154,7 +152,25 @@ class SystemCommand
 
   attr_reader :executable, :args, :input, :chdir, :env
 
-  attr_predicate :sudo?, :sudo_as_root?, :must_succeed?, :reset_uid?
+  sig { returns(T::Boolean) }
+  def must_succeed?
+    @must_succeed == true
+  end
+
+  sig { returns(T::Boolean) }
+  def reset_uid?
+    @reset_uid == true
+  end
+
+  sig { returns(T::Boolean) }
+  def sudo?
+    @sudo == true
+  end
+
+  sig { returns(T::Boolean) }
+  def sudo_as_root?
+    @sudo_as_root == true
+  end
 
   sig { returns(T::Boolean) }
   def debug?

@@ -1,7 +1,6 @@
 # typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
-require "attrable"
 require "locale"
 require "lazy_object"
 require "livecheck"
@@ -105,17 +104,39 @@ module Cask
       *ARTIFACT_BLOCK_CLASSES.flat_map { |klass| [klass.dsl_key, klass.uninstall_dsl_key] },
     ]).freeze
 
-    extend Attrable
     include OnSystem::MacOSAndLinux
 
     attr_reader :cask, :token, :deprecation_date, :deprecation_reason, :deprecation_replacement, :disable_date,
                 :disable_reason, :disable_replacement, :on_system_block_min_os
 
-    attr_predicate :deprecated?, :disabled?, :livecheck_defined?, :on_system_blocks_exist?, :depends_on_set_in_block?
-
     def initialize(cask)
       @cask = cask
       @token = cask.token
+    end
+
+    sig { returns(T::Boolean) }
+    def depends_on_set_in_block?
+      @depends_on_set_in_block == true
+    end
+
+    sig { returns(T::Boolean) }
+    def deprecated?
+      @deprecated == true
+    end
+
+    sig { returns(T::Boolean) }
+    def disabled?
+      @disabled == true
+    end
+
+    sig { returns(T::Boolean) }
+    def livecheck_defined?
+      @livecheck_defined == true
+    end
+
+    sig { returns(T::Boolean) }
+    def on_system_blocks_exist?
+      @on_system_blocks_exist == true
     end
 
     # Specifies the cask's name.

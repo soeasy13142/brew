@@ -1,7 +1,6 @@
 # typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
-require "attrable"
 require "formula_installer"
 require "unpack_strategy"
 require "utils/topological_hash"
@@ -17,8 +16,6 @@ require "cgi"
 module Cask
   # Installer for a {Cask}.
   class Installer
-    extend Attrable
-
     def initialize(cask, command: SystemCommand, force: false, adopt: false,
                    skip_cask_deps: false, binaries: true, verbose: false,
                    zap: false, require_sha: false, upgrade: false, reinstall: false,
@@ -42,9 +39,70 @@ module Cask
       @quiet = quiet
     end
 
-    attr_predicate :binaries?, :force?, :adopt?, :skip_cask_deps?, :require_sha?,
-                   :reinstall?, :upgrade?, :verbose?, :zap?, :installed_as_dependency?, :installed_on_request?,
-                   :quarantine?, :quiet?
+    sig { returns(T::Boolean) }
+    def adopt?
+      @adopt == true
+    end
+
+    sig { returns(T::Boolean) }
+    def binaries?
+      @binaries == true
+    end
+
+    sig { returns(T::Boolean) }
+    def force?
+      @force == true
+    end
+
+    sig { returns(T::Boolean) }
+    def installed_as_dependency?
+      @installed_as_dependency == true
+    end
+
+    sig { returns(T::Boolean) }
+    def installed_on_request?
+      @installed_on_request == true
+    end
+
+    sig { returns(T::Boolean) }
+    def quarantine?
+      @quarantine == true
+    end
+
+    sig { returns(T::Boolean) }
+    def quiet?
+      @quiet == true
+    end
+
+    sig { returns(T::Boolean) }
+    def reinstall?
+      @reinstall == true
+    end
+
+    sig { returns(T::Boolean) }
+    def require_sha?
+      @require_sha == true
+    end
+
+    sig { returns(T::Boolean) }
+    def skip_cask_deps?
+      @skip_cask_deps == true
+    end
+
+    sig { returns(T::Boolean) }
+    def upgrade?
+      @upgrade == true
+    end
+
+    sig { returns(T::Boolean) }
+    def verbose?
+      @verbose == true
+    end
+
+    sig { returns(T::Boolean) }
+    def zap?
+      @zap == true
+    end
 
     def self.caveats(cask)
       odebug "Printing caveats"

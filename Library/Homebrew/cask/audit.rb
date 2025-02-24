@@ -1,7 +1,6 @@
 # typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
-require "attrable"
 require "cask/denylist"
 require "cask/download"
 require "digest"
@@ -19,15 +18,12 @@ module Cask
   class Audit
     include SystemCommand::Mixin
     include ::Utils::Curl
-    extend Attrable
 
     sig { returns(Cask) }
     attr_reader :cask
 
     sig { returns(T.nilable(Download)) }
     attr_reader :download
-
-    attr_predicate :new_cask?, :strict?, :signing?, :online?, :token_conflicts?
 
     def initialize(
       cask,
@@ -53,6 +49,31 @@ module Cask
       @token_conflicts = token_conflicts
       @only = only || []
       @except = except || []
+    end
+
+    sig { returns(T::Boolean) }
+    def new_cask?
+      @new_cask == true
+    end
+
+    sig { returns(T::Boolean) }
+    def online?
+      @online == true
+    end
+
+    sig { returns(T::Boolean) }
+    def signing?
+      @signing == true
+    end
+
+    sig { returns(T::Boolean) }
+    def strict?
+      @strict == true
+    end
+
+    sig { returns(T::Boolean) }
+    def token_conflicts?
+      @token_conflicts == true
     end
 
     def run!
