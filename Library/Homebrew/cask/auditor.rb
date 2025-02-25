@@ -21,11 +21,11 @@ module Cask
       params(
         cask:                  ::Cask::Cask,
         audit_download:        T::Boolean,
-        audit_online:          T::Boolean,
-        audit_strict:          T::Boolean,
-        audit_signing:         T::Boolean,
-        audit_token_conflicts: T::Boolean,
-        audit_new_cask:        T::Boolean,
+        audit_online:          T.nilable(T::Boolean),
+        audit_strict:          T.nilable(T::Boolean),
+        audit_signing:         T.nilable(T::Boolean),
+        audit_token_conflicts: T.nilable(T::Boolean),
+        audit_new_cask:        T.nilable(T::Boolean),
         quarantine:            T::Boolean,
         any_named_args:        T::Boolean,
         language:              T.nilable(String),
@@ -36,11 +36,11 @@ module Cask
     def initialize(
       cask,
       audit_download: false,
-      audit_online: false,
-      audit_strict: false,
-      audit_signing: false,
-      audit_token_conflicts: false,
-      audit_new_cask: false,
+      audit_online: nil,
+      audit_strict: nil,
+      audit_signing: nil,
+      audit_token_conflicts: nil,
+      audit_new_cask: nil,
       quarantine: false,
       any_named_args: false,
       language: nil,
@@ -98,9 +98,9 @@ module Cask
 
     sig { params(audit: T.nilable(Audit)).returns(T::Boolean) }
     def output_summary?(audit = nil)
-      return true if @any_named_args.present?
-      return true if @audit_strict.present?
-      return false if audit.blank?
+      return true if @any_named_args
+      return true if @audit_strict
+      return false if audit.nil?
 
       audit.errors?
     end
