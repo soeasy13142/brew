@@ -44,21 +44,15 @@ RSpec.describe Cask::Audit, :cask do
   end
 
   let(:cask) { instance_double(Cask::Cask) }
-  let(:new_cask) { nil }
-  let(:online) { nil }
+  let(:new_cask) { false }
+  let(:online) { false }
   let(:only) { [] }
   let(:except) { [] }
-  let(:strict) { nil }
-  let(:token_conflicts) { nil }
-  let(:signing) { nil }
+  let(:strict) { false }
+  let(:token_conflicts) { false }
+  let(:signing) { false }
   let(:audit) do
-    described_class.new(cask, online:,
-                              strict:,
-                              new_cask:,
-                              token_conflicts:,
-                              signing:,
-                              only:,
-                              except:)
+    described_class.new(cask, online:, strict:, new_cask:, token_conflicts:, signing:, only:, except:)
   end
 
   describe "#new" do

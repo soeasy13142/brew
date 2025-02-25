@@ -25,20 +25,34 @@ module Cask
     sig { returns(T.nilable(Download)) }
     attr_reader :download
 
+    sig {
+      params(
+        cask:            ::Cask::Cask,
+        download:        T::Boolean,
+        quarantine:      T::Boolean,
+        token_conflicts: T::Boolean,
+        online:          T::Boolean,
+        strict:          T::Boolean,
+        signing:         T::Boolean,
+        new_cask:        T::Boolean,
+        only:            T::Array[Symbol],
+        except:          T::Array[Symbol],
+      ).void
+    }
     def initialize(
       cask,
-      download: nil, quarantine: nil,
-      token_conflicts: nil, online: nil, strict: nil, signing: nil,
-      new_cask: nil, only: [], except: []
+      download: false, quarantine: false,
+      token_conflicts: false, online: false, strict: false, signing: false,
+      new_cask: false, only: [], except: []
     )
       # `new_cask` implies `online`, `token_conflicts`, `strict` and `signing`
-      online = new_cask if online.nil?
-      strict = new_cask if strict.nil?
-      signing = new_cask if signing.nil?
-      token_conflicts = new_cask if token_conflicts.nil?
+      online ||= new_cask
+      strict ||= new_cask
+      signing ||= new_cask
+      token_conflicts ||= new_cask
 
       # `online` and `signing` imply `download`
-      download = online || signing if download.nil?
+      download ||= online || signing
 
       @cask = cask
       @download = Download.new(cask, quarantine:) if download
@@ -47,33 +61,34 @@ module Cask
       @signing = signing
       @new_cask = new_cask
       @token_conflicts = token_conflicts
-      @only = only || []
-      @except = except || []
+      @only = only
+      @except = except
     end
 
     sig { returns(T::Boolean) }
-    def new_cask? = !!@new_cask
+    def new_cask? = @new_cask
 
     sig { returns(T::Boolean) }
-    def online? = !!@online
+    def online? = @online
 
     sig { returns(T::Boolean) }
-    def signing? = !!@signing
+    def signing? = @signing
 
     sig { returns(T::Boolean) }
-    def strict? = !!@strict
+    def strict? = @strict
 
     sig { returns(T::Boolean) }
-    def token_conflicts? = !!@token_conflicts
+    def token_conflicts? = @token_conflicts
 
+    sig { returns(::Cask::Audit) }
     def run!
       only_audits = @only
       except_audits = @except
 
       private_methods.map(&:to_s).grep(/^audit_/).each do |audit_method_name|
         name = audit_method_name.delete_prefix("audit_")
-        next if !only_audits.empty? && only_audits&.exclude?(name)
-        next if except_audits&.include?(name)
+        next if !only_audits.empty? && only_audits.exclude?(name)
+        next if except_audits.include?(name)
 
         send(audit_method_name)
       end
