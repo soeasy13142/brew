@@ -111,23 +111,28 @@ module Cask
 
     def initialize(cask)
       @cask = cask
+      @depends_on_set_in_block = T.let(false, T::Boolean)
+      @deprecated = T.let(false, T::Boolean)
+      @disabled = T.let(false, T::Boolean)
+      @livecheck_defined = T.let(false, T::Boolean)
+      @on_system_blocks_exist = T.let(false, T::Boolean)
       @token = cask.token
     end
 
     sig { returns(T::Boolean) }
-    def depends_on_set_in_block? = !!@depends_on_set_in_block
+    def depends_on_set_in_block? = @depends_on_set_in_block
 
     sig { returns(T::Boolean) }
-    def deprecated? = !!@deprecated
+    def deprecated? = @deprecated
 
     sig { returns(T::Boolean) }
-    def disabled? = !!@disabled
+    def disabled? = @disabled
 
     sig { returns(T::Boolean) }
-    def livecheck_defined? = !!@livecheck_defined
+    def livecheck_defined? = @livecheck_defined
 
     sig { returns(T::Boolean) }
-    def on_system_blocks_exist? = !!@on_system_blocks_exist
+    def on_system_blocks_exist? = @on_system_blocks_exist
 
     # Specifies the cask's name.
     #
