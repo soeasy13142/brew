@@ -944,6 +944,16 @@ RSpec.describe Formula do
     expect(Set.new(requirements)).to eq(Set[])
   end
 
+  specify "sha256" do
+    f1 = formula "foo" do
+      url "foo-1.0"
+      sha256 :no_check
+    end
+
+    h = f1.to_hash
+    expect(h.dig("urls", "stable", "checksum")).to eq("no_check")
+  end
+
   specify "#to_hash" do
     f1 = formula "foo" do
       url "foo-1.0"

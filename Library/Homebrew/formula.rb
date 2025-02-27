@@ -3670,7 +3670,7 @@ class Formula
     #
     # @api public
     sig { params(val: T.any(String, Symbol)).void }
-    def sha256(val) = stable.sha256(val)
+    def sha256(val) = stable.sha256(val.to_s)
 
     # Adds a {.bottle} {SoftwareSpec}.
     # This provides a pre-built binary package built by the Homebrew maintainers for you.

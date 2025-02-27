@@ -182,6 +182,7 @@ class Resource
     @livecheck_defined == true
   end
 
+  sig { params(val: String).returns(Checksum) }
   def sha256(val)
     @checksum = Checksum.new(val)
   end
