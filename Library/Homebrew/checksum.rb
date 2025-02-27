@@ -5,12 +5,12 @@
 class Checksum
   extend Forwardable
 
-  sig { returns(String) }
+  sig { returns(T.any(String, Symbol)) }
   attr_reader :hexdigest
 
-  sig { params(hexdigest: String).void }
+  sig { params(hexdigest: T.any(String, Symbol)).void }
   def initialize(hexdigest)
-    @hexdigest = T.let(hexdigest.downcase, String)
+    @hexdigest = T.let(hexdigest.downcase, T.any(String, Symbol))
   end
 
   delegate [:empty?, :to_s, :length, :[]] => :@hexdigest

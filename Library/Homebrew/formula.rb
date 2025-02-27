@@ -3669,7 +3669,7 @@ class Formula
     # ```
     #
     # @api public
-    sig { params(val: String).void }
+    sig { params(val: T.any(String, Symbol)).void }
     def sha256(val) = stable.sha256(val)
 
     # Adds a {.bottle} {SoftwareSpec}.
